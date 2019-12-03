@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <title>Test</title>
+  <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = false;
+
+    var pusher = new Pusher('04eaba3cb5f2812e39d4', {
+      cluster: 'mt1',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      data = JSON.stringify(data);
+      document.getElementById("dato").innerHTML = data;
+      //alert(JSON.stringify(data));
+    });
+  </script>
+</head>
+<body>
+  <h1> Test </h1>
+  Datos:<p id="dato"></p>
+
+</body>
